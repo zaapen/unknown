@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Travels</title>
+	{% load static %}
+	<link rel="stylesheet" rel="shortcut icon" type="text/css" href="{% static 'travelbuddy/css/bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+</head>
+<body>
+<div class="container">
+	<div class="col-md-12">
+		<div class="col-md-4">
+			<h2>Hello, {{current_user.name}}</h2>
+		</div>
+		<div class="col-md-offset-6 col-md-2">
+			<h6><a href="/logout">Log Out</a></h6>
+		</div>
+		<div class="col-md-12">
+			<hr>
+			<h5>Your trip schedules</h5>
+		</div>
+		<div>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>Destination</th>
+					<th>Travel Start Date</th>
+					<th>Travel End Date</th>
+					<th>Plan</th>
+				</tr>
+				{% for trip in user_trips %}
+				<tr>
+					<td><a href="/travels/destination/{{trip.id}}">{{trip.destination}}</a></td>
+					<td>{{trip.travel_start}}</td>
+					<td>{{trip.travel_end}}</td>
+					<td>{{trip.desc}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<hr>
+		<h5>Other user's travel plan</h5>
+		<div>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>Name</th>
+					<th>Destination</th>
+					<th>Travel Start Date</th>
+					<th>Travel End Date</th>
+					<th>Do you want to join</th>
+				</tr>
+				{% for user in all_users %}
+					{% if user.id != current_user.id %}
+						{% for one_trip in user.trips.all %}
+						<tr>
+							<td>{{user.name}}</td>
+							<td><a href="/travels/destination/{{one_trip.id}}">{{one_trip.destination}}</a></td>
+							<td>{{one_trip.travel_start}}</td>
+							<td>{{one_trip.travel_end}}</td>
+							<td><a href="/join/{{one_trip.id}}">Join</a></td>
+						</tr>
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
+			</table>
+		</div>
+		<a href="/travels/add">Add Travel Plan</a>
+	</div>
+</div>
+</body>
+</html>

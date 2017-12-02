@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Destination</title>
+	{% load static %}
+	<link rel="stylesheet" rel="shortcut icon" type="text/css" href="{% static 'travelbuddy/css/bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-offset-8 col-md-4">
+			<p><a href="/travels">Home</a> | <a href="/logout">Log out</a></p>
+		</div>
+		<hr>
+		<div class="col-md-12">
+			<h3>{{current_trip.destination}}</h3>
+			<p>Plan by: {{first_user.name}}</p>
+			<p>Description: {{current_trip.desc}}</p>
+			<p>Travel Date From: {{current_trip.travel_start}}</p>
+			<p>Travel Date To: {{current_trip.travel_end}}</p>
+		</div>
+		<hr>
+		<div class="col-md-12">
+			<h3>Other users' joining the trip</h3>
+			{% for user in all_users%}
+				{% if first_user.id != user.id %}
+					<p>{{user.name}}</p>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

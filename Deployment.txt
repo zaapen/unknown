@@ -1,0 +1,5 @@
+Deployment site:
+
+http://18.220.99.183/
+
+The exam requires deployment. I'm not very sure about this since the rule said not to upload the code to any website. It's conflicting with the rules.  If this is an error and we are not suppose to upload, please let me know right away so I could take down the code right away.
